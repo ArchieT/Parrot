@@ -19,32 +19,20 @@ Board::Board(unsigned x, unsigned y, unsigned obsChance = 10)
     :X(x), Y(y)
 {
     Rows = new Line[X];
-    for(int i = 0; i < X; i++)
+    for(unsigned int i = 0; i < X; i++)
     {
         Rows[i] = Line(Y);
-        for(int k = 0; k < Y; k++)
-        {
-            if (i != 0 && i != X-1)
-            {
-                if (rand() % obsChance == 0)
-                    Rows[i][k] = new GameObject("Obstacle");
-                else
-                    Rows[i][k] = new GameObject("Field");
-            }
-            else
-                Rows[i][k] = new GameObject("Field");
-        }
+        for(unsigned int k = 0; k < Y; k++)
+          Rows[i][k] = new GameObject((i != 0 && i != X-1) && (rand() % obsChance == 0) ? "Obstacle" : "Field");
     }
 }
 
 
 Line::~Line()
 {
-    for(int i = 0; i < lineSize; i++)
-    {
+    for(unsigned int i = 0; i < lineSize; i++)
         delete Fields[i];
-    }
-    
+
     delete[] Fields;
 }
 

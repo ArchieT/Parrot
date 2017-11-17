@@ -7,11 +7,8 @@ inline void error(const std::string message)
 
 inline int toint(char c)
 {
-    
     if ('a' <= c && c <= 'h')
-    {
         return c - 'a';
-    }
     else
     {
         error("toint -> wrong parameter: Letter");
@@ -33,7 +30,7 @@ int reverse(char a)
 GameObject::GameObject(std::string name)
 :Name(name)
 {
-    
+
 }//getLine(plik, linia);       ===== Why is that???
 
 void GameObject::reveal()
@@ -75,21 +72,18 @@ void Figure::setHP(int hp)
 bool Figure::canMove(int startX, int startY, int targetX, int targetY)
 {
     double required = 0;
-    
+
     if (Board[targetX][targetY]->Name == "obstacle")
     {
         return 0;
     }
-    
+
     double X = pow((startX - targetX), 2);
     double Y = pow((startY - targetY), 2);
-    
+
     required = sqrt(X + Y);
-    
-    if (required <= movement)
-        return true;
-    else
-        return false;
+
+    return (required <= movement);
 }
 
 void Figure::move(int startX, int startY, int targetX, int targetY)
@@ -97,29 +91,20 @@ void Figure::move(int startX, int startY, int targetX, int targetY)
     GameObject* p = Board[targetX][targetY];
     Board[targetX][targetY] = Board[startX][startY];
     Board[startX][startY] = p;
-    
-    if (!(targetX <= boardX-1 && targetX >= 0))
-    {
+
+    if (!(targetX <= boardX-1 && targetX >= 0)
+        || !(targetY <= boardY-1 && targetY >= 0))
         error("canMove -> wrong parameter: Number");
-    }
-    if (!(targetY <= boardY-1 && targetY >= 0))
-    {
-        error("canMove -> wrong parameter: Number");
-    }
 }
 
-int Figure::setAttak(int skill, int def, int dmg ,int arm) // Zwraca zadany dmg
+int Figure::setAttak(int skill, int def, int dmg, int arm) // Zwraca zadany dmg
 {
     int force = rand() % 11 + 1;
     int dif = skill - def;
-    if (5 <= force + dif)
-        return dmg - arm;
-    else
-        return 0;
+    return (5 <= force + dif) ? dmg - arm : 0;
 }
 bool Figure::checkOwner(bool player, int x, int y){
     return Board[x][y]->owner == player;
-    
 }
 
 /*bool checkInput(std::string input){
@@ -127,7 +112,7 @@ bool Figure::checkOwner(bool player, int x, int y){
  std::string cyfra[boardX] = {'1', '2', '3', '4', '5', '6', '7', '8'};
  std::string znakD[boardY] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
  std::string znakM[boardY] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
- 
+
  }*/
 
 /*void missRound(bool &player, int &round){
