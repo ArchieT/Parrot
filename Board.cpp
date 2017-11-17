@@ -23,7 +23,7 @@ Board::Board(unsigned x, unsigned y, unsigned obsChance = 10)
     {
         Rows[i] = Line(Y);
         for(unsigned int k = 0; k < Y; k++)
-          Rows[i][k] = new GameObject((i != 0 && i != X-1) && (rand() % obsChance == 0) ? "Obstacle" : "Field");
+            Rows[i][k] = new GameObject((i != 0 && i != X-1) && (rand() % obsChance == 0) ? "Obstacle" : "Field");
     }
 }
 

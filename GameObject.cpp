@@ -28,7 +28,7 @@ int reverse(char a)
 
 
 GameObject::GameObject(std::string name)
-:Name(name)
+    :Name(name)
 {
 
 }//getLine(plik, linia);       ===== Why is that???
@@ -47,7 +47,7 @@ bool GameObject::canMove(int startX, int startY, int targetX, int targetY, doubl
 
 
 Figure::Figure(std::string name, bool own, int HP, int dmg )
-:GameObject(name), owner(own), HP(HP), dmg(dmg)
+    :GameObject(name), owner(own), HP(HP), dmg(dmg)
 {
 }
 
@@ -93,7 +93,7 @@ void Figure::move(int startX, int startY, int targetX, int targetY)
     Board[startX][startY] = p;
 
     if (!(targetX <= boardX-1 && targetX >= 0)
-        || !(targetY <= boardY-1 && targetY >= 0))
+            || !(targetY <= boardY-1 && targetY >= 0))
         error("canMove -> wrong parameter: Number");
 }
 
@@ -103,7 +103,8 @@ int Figure::setAttak(int skill, int def, int dmg, int arm) // Zwraca zadany dmg
     int dif = skill - def;
     return (5 <= force + dif) ? dmg - arm : 0;
 }
-bool Figure::checkOwner(bool player, int x, int y){
+bool Figure::checkOwner(bool player, int x, int y)
+{
     return Board[x][y]->owner == player;
 }
 
