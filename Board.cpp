@@ -1,7 +1,6 @@
 #include "Header.h"
 #include "Board.h"
 
-
 Line::Line(unsigned size)
     :lineSize(size)
 {
@@ -11,7 +10,7 @@ Line::Line(unsigned size)
 
 GameObject* &Line::operator[](unsigned index)
 {
-    return Fields[index];
+    return Fields[reverse(index) - 1];
 }
 
 
@@ -49,7 +48,7 @@ Board::~Board()
 
 Line& Board::operator[](unsigned index)
 {
-    return Rows[index];
+    return Rows[index - 1];
 }
 
 
@@ -91,8 +90,8 @@ void Board::swap(std::string a)
 {
     int x1 = toint(a[0]);
     int y1 = reverse(a[1]);
-    int x2 = toint(a[3]);
-    int y2 = reverse(a[4]);
+    int x2 = toint(a[0]);
+    int y2 = reverse(a[1]);
     
     GameObject* buffer;
     buffer = Rows[x1][y1];
@@ -110,7 +109,7 @@ void Board::add_rand_obstacles(int x, int y, int obsChance)
             if (i != 0 && i != X-1)
             {
                 if (rand() % obsChance == 0)
-                    Rows[i][k] = new GameObject("Obstacle");
+                    Rows[i][k - 1] = new GameObject("Obstacle");
                 else
                     Rows[i][k] = new GameObject("Field");
             }
