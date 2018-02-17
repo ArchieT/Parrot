@@ -131,26 +131,26 @@ bool Figure::styleB(int targetX, int targetY,  Board &board){//x
     int changedX = x - targetX;
     int changedY = y - targetY;
 
-    if(changedX > movePoints || changedY > movePoints) return 0;
+    if(changedX > movePoints || changedY > movePoints) return false;
 
     if(changedX < 0 && changedY > 0){ //lewy górny
         for(int i = 1; i <= changedX; i++){
-            if(board[x-i][y+i]->isEmpty()) return 0;
+            if(board[x-i][y+i]->isEmpty()) return false;
         }
     }
     else if(changedX > 0 && changedY > 0){ //Prawy górny
         for(int i = 1; i <= changedX; i++){
-            if(board[x+i][y+i]->isEmpty()) return 0;
+            if(board[x+i][y+i]->isEmpty()) return false;
         }
     }
     else if(changedX < 0 && changedY < 0){ //lewy dolny
         for(int i = 1; i <= changedX; i++){
-            if(board[x-i][y-i]->isEmpty()) return 0;
+            if(board[x-i][y-i]->isEmpty()) return false;
         }
     }
     else if(changedX > 0 && changedY < 0){ //prawy górny
         for(int i = 1; i <= changedX; i++){
-            if(board[x+i][y-i]->isEmpty()) return 0;
+            if(board[x+i][y-i]->isEmpty()) return false;
         }
     }
     else return true;
@@ -159,27 +159,25 @@ bool Figure::styleB(int targetX, int targetY,  Board &board){//x
 
 
 /*=======================[FUNKCJE DO SPRAWDZANIA PRZESZKOD]====================*/
-bool Pawn::canMove(int targetX, int targetY) {
-    if(styleA((targetX,targetY)) return true;
-            else return false;
+bool Pawn::canMove(int targetX, int targetY, Board &board) {
+    return styleA(targetX, targetY, board);
 }
 
-bool Knight::canMove(int targetX, int targetY) {
-    if(styleA(targetX,targetY) || styleB(targetX,targetY)) return true;
-    else return false;
+bool Knight::canMove(int targetX, int targetY, Board &board) {
+    return styleA(targetX, targetY, board) || styleB(targetX, targetY, board);
 }
 
-bool Rook::canMove(int targetX, int targetY) {
-    if(styleA(targetX,targetY)) return true;
-    else return false;
+bool Rook::canMove(int targetX, int targetY, Board &board) {
+    return styleA(targetX, targetY, board);
 }
 
-bool Bishop::canMove(int targetX, int targetY) {
-    if(styleB(targetX,targetY)) return true;
-    else return false;
+bool Bishop::canMove(int targetX, int targetY, Board &board) {
+    return styleB(targetX, targetY, board);
 }
 
-bool Queen::canMove(int targetX, int targetY) {
-    if(styleA(targetX,targetY)) return true;
-    else return false;
+bool Queen::canMove(int targetX, int targetY, Board &board) {
+    return styleA(targetX, targetY, board);
+}
+bool King::canMove(int targetX, int targetY, Board &board) {
+    return styleA(targetX, targetY, board) || styleB(targetX, targetY, board);
 }

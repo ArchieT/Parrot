@@ -4,7 +4,7 @@
 Board board;
 
 static bool win          = false;
-static bool player       = false;
+static int player;
 static int roundNumber         = 0;
 static bool attacked;
 static bool moved;
@@ -17,7 +17,7 @@ int main() {
     //openFile(); paweł pisze wczytywanie wszystkoeeeeego z pliku
 
     do {
-        player = roundNumber % 2 + 1 != 0;
+        player = roundNumber % 2 + 1;
         std::cout << "Tura gracza " << player << std::endl;
         attacked = 0;
         moved = 0;

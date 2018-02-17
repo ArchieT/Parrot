@@ -127,7 +127,7 @@ public:
     const figType* getFigType() override {
         return &type;
     }
-    virtual bool canMove(int targetX, int targetY);
+    virtual bool canMove(int targetX, int targetY, Board &board);
 };
 
 //dziedziczenie po klasie Figure
@@ -141,7 +141,7 @@ public:
 			: Figure(PAWN, owner, HP, dmg) {}
 	bool canAttack(int targetX, int targetY) override;
 	static bool canAttack(int cordX, int cordY, int targetX, int targetY);
-	bool canMove(int targetX, int targetY);
+	bool canMove(int targetX, int targetY, Board &board);
 
 };
 
@@ -156,7 +156,7 @@ public:
 
 	bool canAttack(int targetX, int targetY) override;
 	static bool canAttack(int cordX, int cordY, int targetX, int targetY);
-	bool canMove(int targetX, int targetY);
+	bool canMove(int targetX, int targetY, Board &board);
 
 };
 
@@ -171,7 +171,7 @@ public:
 
 	bool canAttack(int targetX, int targetY) override;
 	static bool canAttack(int cordX, int cordY, int targetX, int targetY);
-	bool canMove(int targetX, int targetY);
+	bool canMove(int targetX, int targetY, Board &board);
 
 };
 
@@ -186,7 +186,7 @@ public:
 
 	bool canAttack(int targetX, int targetY) override;
 	static bool canAttack(int cordX, int cordY, int targetX, int targetY);
-	bool canMove(int targetX, int targetY);
+	bool canMove(int targetX, int targetY, Board &board);
 
 };
 
@@ -200,7 +200,7 @@ public:
 			: Figure(QUEEN, owner, HP, dmg) {}
     bool canAttack(int targetX, int targetY) override;
 	static bool canAttack(int cordX, int cordY, int targetX, int targetY);
-	bool canMove(int targetX, int targetY);
+	bool canMove(int targetX, int targetY, Board &board);
 
 };
 
@@ -217,7 +217,7 @@ public:
 
 	bool canAttack(int targetX, int targetY) override;
 	static bool canAttack(int cordX, int cordY, int targetX, int targetY);
-	bool canMove(int targetX, int targetY);
+	bool canMove(int targetX, int targetY, Board &board);
 
 };
 
