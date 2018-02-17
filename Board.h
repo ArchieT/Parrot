@@ -6,15 +6,15 @@ class Line
 {
 private:
     unsigned lineSize;
-    GameObject** Fields;
+    std::vector<GameObject> Fields;
 
 public:
     Line() = default;
 
     explicit Line(unsigned size);
 
-    GameObject* &operator[](unsigned index);
-    ~Line();
+    GameObject &operator[](unsigned index);
+//    ~Line();
     //unsigned getY() {return lineSize;}
 
     //GameObject *&get(unsigned int index, int y);
@@ -26,11 +26,11 @@ class Board
 private:
     unsigned X;
     unsigned Y;
-    Line* Rows;
+    std::vector<Line> Rows;
 public:
     Board(unsigned x, unsigned y);
     Board() = default;
-    ~Board();
+//    ~Board();
 
     Line& operator[](unsigned index);
 
@@ -44,6 +44,9 @@ public:
     void add_rand_obstacles(/*int x, int y,*/ int obsChance);
     void GetBoard_from_File(std::string fileName);
 
+    GameObject& get(unsigned x, unsigned y) {
+        return operator[](x)[y];
+    }
 
     bool canMove(int cordX, int cordY, int targetX, int targetY);
 

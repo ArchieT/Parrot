@@ -104,22 +104,22 @@ bool Board::styleA(Figure &fig, int cordX, int cordY, int targetX, int targetY) 
 
     if( changedX < 0 && y == targetY){ // poziomo lewo
         for(int i = 1; i <= changedX; i++){
-            if(!operator[](x - i)[y]->isEmpty()) return false;
+            if(!operator[](x - i)[y].isEmpty()) return false;
         }
     }
     else if(changedX > 0 && y == targetY){ //poziomo prawo
         for(int i = 1; i <= changedX; i++){
-            if(operator[](x+i)[y]->isEmpty()) return false;
+            if(operator[](x+i)[y].isEmpty()) return false;
         }
     }
     else if(changedX == 0 && y < targetY){ // w gore
         for(int i = 1; i <= changedX; i++){
-            if(operator[](x)[y+i]->isEmpty()) return false;
+            if(operator[](x)[y+i].isEmpty()) return false;
         }
     }
     else if(changedX == 0 && y > targetY){ //w dol
         for(int i = 1; i <= changedX; i++){
-            if(operator[](x)[y-i]->isEmpty()) return false;
+            if(operator[](x)[y-i].isEmpty()) return false;
         }
     }
     else return true;
@@ -135,22 +135,22 @@ bool Board::styleB(Figure &fig, int cordX, int cordY, int targetX, int targetY){
 
     if(changedX < 0 && changedY > 0){ //lewy górny
         for(int i = 1; i <= changedX; i++){
-            if(operator[](x-i)[y+i]->isEmpty()) return false;
+            if(operator[](x-i)[y+i].isEmpty()) return false;
         }
     }
     else if(changedX > 0 && changedY > 0){ //Prawy górny
         for(int i = 1; i <= changedX; i++){
-            if(operator[](x+i)[y+i]->isEmpty()) return false;
+            if(operator[](x+i)[y+i].isEmpty()) return false;
         }
     }
     else if(changedX < 0 && changedY < 0){ //lewy dolny
         for(int i = 1; i <= changedX; i++){
-            if(operator[](x-i)[y-i]->isEmpty()) return false;
+            if(operator[](x-i)[y-i].isEmpty()) return false;
         }
     }
     else if(changedX > 0 && changedY < 0){ //prawy górny
         for(int i = 1; i <= changedX; i++){
-            if(operator[](x+i)[y-i]->isEmpty()) return false;
+            if(operator[](x+i)[y-i].isEmpty()) return false;
         }
     }
     else return true;
@@ -158,15 +158,15 @@ bool Board::styleB(Figure &fig, int cordX, int cordY, int targetX, int targetY){
 
 bool Board::canAttack(int cordX, int cordY, int targetX, int targetY) {
     //operator[](x)[y-i];
-    if(operator[](targetX)[targetY]->isEmpty()) {
+    if(operator[](targetX)[targetY].isEmpty()) {
         error("Nie mozesz zaatakowac pustego pola");
         return false;
     }
-    if(operator[](targetX)[targetY]->isObstacle()){
+    if(operator[](targetX)[targetY].isObstacle()){
         error("Nie mozesz atakowac przeszkody");
         return false;
     }
     else{
-        return operator[](targetX)[targetY]->canAttack(cordX, cordY, targetX,targetY);
+        return operator[](targetX)[targetY].canAttack(cordX, cordY, targetX,targetY);
     }
 }

@@ -58,7 +58,7 @@ void Figure::addHP(int hp) {
 }
 
 bool Board::canMove(int cordX, int cordY, int targetX, int targetY) {
-    GameObject *ten = operator[](cordX)[cordY];
+    GameObject* ten = &operator[](cordX)[cordY];
     if (ten->isEmpty() || ten->isObstacle()) return false;
     auto *tenFig = dynamic_cast<Figure *>(ten);
     const figType *type = tenFig->getFigType();
