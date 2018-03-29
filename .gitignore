@@ -1,0 +1,9 @@
+.idea/workspace
+old-cpp/CMakeCache.txt
+old-cpp/CMakeFiles
+old-cpp/Makefile
+old-cpp/Parrot.cbp
+old-cpp/ParrotMain
+old-cpp/ParrotTest
+old-cpp/cmake_install.cmake
+
